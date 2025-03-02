@@ -1,138 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StrongStone (STSN) - The Future of Real Investments</title>
+    <title>Site Grandios</title>
+    
+    <!-- Stiluri CSS incluse direct în header -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
-            background-color: #0a0a0a;
-            color: white;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: #fff;
+            line-height: 1.6;
+        }
+
         header {
-            background-color: #111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        /* Hero Section - Include a background image */
-        .hero {
-            padding: 50px;
-            background: url('https://x.com/strongstoneSTSN') no-repeat center center;
-            background-size: cover;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-        .hero h1 {
-            font-size: 48px;
-            margin: 0;
-        }
-        .hero p {
-            font-size: 24px;
-            margin: 10px 0;
-        }
-        /* Call to Action Button */
-        .cta {
-            margin: 20px;
-            padding: 15px 30px;
-            background-color: gold;
-            color: black;
-            font-size: 18px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-        .cta:hover {
-            background-color: #e5b100;
-        }
-        /* Content Section */
-        .content {
-            padding: 30px;
             background-color: #222;
         }
-        .content h2 {
-            font-size: 36px;
+
+        header .logo img {
+            width: 150px;
+        }
+
+        header .navbar nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        header .navbar nav ul li {
+            margin-right: 20px;
+        }
+
+        header .navbar nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hero-section {
+            background-image: url('https://x.com/strongstoneSTSN/status/1896007096921178481/photo/1'); /* Adaugă aici imaginea de fundal */
+            background-size: cover;
+            background-position: center;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero-section .hero-content h1 {
+            font-size: 3em;
             margin-bottom: 20px;
         }
-        .content p {
-            font-size: 18px;
+
+        .hero-section .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            font-size: 2em;
+            color: #ffcc00;
+        }
+
+        .about-section, .contact-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .about-section h2, .contact-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        form input, form textarea {
+            width: 80%;
+            padding: 10px;
             margin: 10px 0;
+            font-size: 1em;
         }
-        /* Logo Section */
-        .logo-container {
-            margin: 30px;
+
+        form button {
+            padding: 10px 20px;
+            background-color: #ffcc00;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
         }
-        .logo-container img {
-            width: 150px; /* Poți ajusta dimensiunea */
-            height: auto;
+
+        form button:hover {
+            background-color: #ffaa00;
         }
-        /* Scrollable Section */
-        .scrollable-section {
-            padding: 50px;
-            background-color: #333;
-            color: #fff;
-            text-align: left;
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
         }
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero p {
-                font-size: 18px;
-            }
-            .cta {
-                font-size: 16px;
-                padding: 12px 25px;
-            }
+
+        footer p {
+            font-size: 1em;
         }
     </style>
+
 </head>
 <body>
-
     <header>
-        StrongStone (STSN) - Invest Smart, Profit Big
+        <div class="logo">
+            <img src="https://x.com/strongstoneSTSN" alt="Logo"> <!-- Înlocuiește cu link-ul logo-ului tău -->
+        </div>
+        <div class="navbar">
+            <nav>
+                <ul>
+                    <li><a href="#home">Acasă</a></li>
+                    <li><a href="#about">Despre</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Welcome to StrongStone</h1>
-        <p>The token backed by real investments & long-term growth</p>
-        <button class="cta" id="joinButton">Join the Future</button>
-    </div>
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1>welcome to a new era!</h1>
+            <p>StrongStone.</p>
+            <div class="timer">
+                <h2>Timer: <span id="cronometru">00:00:00</span></h2>
+            </div>
+        </div>
+    </section>
 
-    <!-- Logo Section -->
-    <div class="logo-container">
-        <img src="https://x.com/strongstoneSTSN"StrongStone Logo">
-    </div>
+    <section id="about" class="about-section">
+        <h2>Despre Noi</h2>
+        <p>stai tuned STRONGSTONE STSN!</p>
+    </section>
 
-    <!-- Why Choose STSN? Section -->
-    <div class="content">
-        <h2>Why Choose STSN?</h2>
-        <p>60% of profits reinvested into real-world businesses.</p>
-        <p>Deflationary model with automatic burns & reinvestment.</p>
-        <p>StrongStone is not just a token, it's a movement.</p>
-    </div>
+    <section id="contact" class="contact-section">
+        <h2>Contactează-ne</h2>
+        <form>
+            <input type="text" placeholder="Nume" required />
+            <input type="email" placeholder="Email" required />
+            <textarea placeholder="Mesaj" required></textarea>
+            <button type="submit">Trimite</button>
+        </form>
+    </section>
 
-    <!-- Scrollable Section (Simulăm navigarea pe site) -->
-    <div class="scrollable-section" id="moreInfo">
-        <h2>Learn More About STSN</h2>
-        <p>Here you can add more information about the StrongStone token, its benefits, and its long-term vision.</p>
-    </div>
+    <footer>
+        <p>&copy; 2025 Site Grandios. Toate drepturile rezervate.</p>
+    </footer>
 
-    <!-- Script pentru interactivitate -->
+    <!-- Scriptul JavaScript inclus direct înainte de încheierea body-ului -->
     <script>
-        document.getElementById("joinButton").addEventListener("click", function() {
-            // Navigare către secțiunea de mai jos (scroll smooth)
-            document.getElementById("moreInfo").scrollIntoView({ behavior: "smooth" });
-        });
-    </script>
+        let timer;
+        let minutes = 0;
+        let seconds = 0;
+        let milliseconds = 0;
 
+        function startTimer() {
+            timer = setInterval(function() {
+                milliseconds++;
+                if (milliseconds >= 100) {
+                    milliseconds = 0;
+                    seconds++;
+                }
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                }
+
+                document.getElementById("cronometru").textContent = formatTime(minutes) + ":" + formatTime(seconds) + ":" + formatTime(milliseconds);
+            }, 10);
+        }
+
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+
+        window.onload = function() {
+            startTimer();
+        };
+    </script>
 </body>
 </html>
