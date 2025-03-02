@@ -22,10 +22,11 @@
         /* Hero Section - Include a background image */
         .hero {
             padding: 50px;
-            background: url('https://your-logo-link.com/logo.png') no-repeat center center;
-            background-size: cover; /* Make the background image cover the entire section */
+            background: url('https://x.com/strongstoneSTSN/status/1896007096921178481/photo/1') no-repeat center center;
+            background-size: cover;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Add shadow to text for better visibility */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
         }
         .hero h1 {
             font-size: 48px;
@@ -63,6 +64,21 @@
             font-size: 18px;
             margin: 10px 0;
         }
+        /* Logo Section */
+        .logo-container {
+            margin: 30px;
+        }
+        .logo-container img {
+            width: 150px; /* Poți ajusta dimensiunea */
+            height: auto;
+        }
+        /* Scrollable Section */
+        .scrollable-section {
+            padding: 50px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+        }
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
@@ -79,19 +95,44 @@
     </style>
 </head>
 <body>
+
     <header>
         StrongStone (STSN) - Invest Smart, Profit Big
     </header>
+
+    <!-- Hero Section -->
     <div class="hero">
         <h1>Welcome to StrongStone</h1>
         <p>The token backed by real investments & long-term growth</p>
-        <button class="cta">Join the Future</button>
+        <button class="cta" id="joinButton">Join the Future</button>
     </div>
+
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <img src="https://your-logo-link.com/logo.png" alt="StrongStone Logo">
+    </div>
+
+    <!-- Why Choose STSN? Section -->
     <div class="content">
         <h2>Why Choose STSN?</h2>
         <p>60% of profits reinvested into real-world businesses.</p>
         <p>Deflationary model with automatic burns & reinvestment.</p>
         <p>StrongStone is not just a token, it's a movement.</p>
     </div>
+
+    <!-- Scrollable Section (Simulăm navigarea pe site) -->
+    <div class="scrollable-section" id="moreInfo">
+        <h2>Learn More About STSN</h2>
+        <p>Here you can add more information about the StrongStone token, its benefits, and its long-term vision.</p>
+    </div>
+
+    <!-- Script pentru interactivitate -->
+    <script>
+        document.getElementById("joinButton").addEventListener("click", function() {
+            // Navigare către secțiunea de mai jos (scroll smooth)
+            document.getElementById("moreInfo").scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+
 </body>
 </html>
