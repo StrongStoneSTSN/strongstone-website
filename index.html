@@ -10,32 +10,71 @@
             margin: 0;
             padding: 0;
             text-align: center;
-            background: #0a0a0a;
+            background-color: #0a0a0a;
             color: white;
         }
         header {
-            background: #111;
+            background-color: #111;
             padding: 20px;
             font-size: 24px;
             font-weight: bold;
         }
+        /* Hero Section - Include a background image */
         .hero {
             padding: 50px;
-            background: url('https://your-logo-link.com/logo.png') no-repeat center;
-            background-size: contain;
+            background: url('https://your-logo-link.com/logo.png') no-repeat center center;
+            background-size: cover; /* Make the background image cover the entire section */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: Add shadow to text for better visibility */
         }
-        .content {
-            padding: 30px;
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
         }
+        .hero p {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        /* Call to Action Button */
         .cta {
             margin: 20px;
             padding: 15px 30px;
-            background: gold;
+            background-color: gold;
             color: black;
             font-size: 18px;
             font-weight: bold;
             border: none;
             cursor: pointer;
+            text-transform: uppercase;
+        }
+        .cta:hover {
+            background-color: #e5b100;
+        }
+        /* Content Section */
+        .content {
+            padding: 30px;
+            background-color: #222;
+        }
+        .content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .content p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .cta {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
         }
     </style>
 </head>
