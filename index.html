@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STRONGSTONE STSN</title>
     
-    <!-- Stiluri CSS incluse direct în header -->
     <style>
         * {
             margin: 0;
@@ -15,7 +14,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #1f1f1f;
+            background: linear-gradient(135deg, #b8860b, #daa520, #ffcc00);
             color: #fff;
             line-height: 1.6;
         }
@@ -25,43 +24,36 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-            background-color: #222;
+            background-color: rgba(34, 34, 34, 0.8);
         }
 
-        header .logo img {
-            width: 150px;
-        }
-
-        header .navbar nav ul {
+        .navbar nav ul {
             list-style: none;
             display: flex;
         }
 
-        header .navbar nav ul li {
+        .navbar nav ul li {
             margin-right: 20px;
         }
 
-        header .navbar nav ul li a {
+        .navbar nav ul li a {
             text-decoration: none;
             color: #fff;
             font-weight: bold;
         }
 
         .hero-section {
-            background-image: url('https://x.com/strongstoneSTSN'); /* Adaugă aici imaginea de fundal */
-            background-size: cover;
-            background-position: center;
-            padding: 100px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 50px;
         }
 
-        .hero-section .hero-content h1 {
+        .hero-content h1 {
             font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .hero-section .hero-content p {
-            font-size: 1.5em;
             margin-bottom: 20px;
         }
 
@@ -73,11 +65,6 @@
         .about-section, .contact-section {
             padding: 60px 20px;
             text-align: center;
-        }
-
-        .about-section h2, .contact-section h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
         }
 
         form input, form textarea {
@@ -95,27 +82,15 @@
             cursor: pointer;
         }
 
-        form button:hover {
-            background-color: #ffaa00;
-        }
-
         footer {
             text-align: center;
             padding: 20px;
-            background-color: #222;
-        }
-
-        footer p {
-            font-size: 1em;
+            background-color: rgba(34, 34, 34, 0.8);
         }
     </style>
-
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src=""> <!-- Înlocuiește cu link-ul logo-ului tău -->
-        </div>
         <div class="navbar">
             <nav>
                 <ul>
@@ -129,23 +104,23 @@
 
     <section id="home" class="hero-section">
         <div class="hero-content">
-            <h1>welcome to a new era!</h1>
+            <h1>Welcome to a new era!</h1>
             <p>StrongStone.</p>
             <div class="timer">
-                <h2>Timer: <span id="cronometru">00:00:00</span></h2>
+                <h2>Time left: <span id="cronometru">45:00:00:00</span></h2>
             </div>
         </div>
     </section>
 
     <section id="about" class="about-section">
-        <h2>STRONGSTONE STSN private investment fund in real estate, recycling, informatics, AI, trade and production </h2>
-        <p>STAI TUNED </p>
+        <h2>STRONGSTONE STSN iprivate investment fund in real estate, recycling, informatics, AI, trade and production</h2>
+        <p>STAY TUNED</p>
     </section>
 
     <section id="contact" class="contact-section">
         <h2>Contact</h2>
         <form>
-            <input type="text" placeholder="Nume" required />
+            <input type="text" placeholder="Name" required />
             <input type="email" placeholder="Email" required />
             <textarea placeholder="Mesaj" required></textarea>
             <button type="submit">Trimite</button>
@@ -153,39 +128,41 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 strongstone STSN  Toate drepturile rezervate.</p>
+        <p>&copy; 2025 StrongStone STSN .</p>
     </footer>
 
-    <!-- Scriptul JavaScript inclus direct înainte de încheierea body-ului -->
     <script>
-        let timer;
-        let minutes = 0;
-        let seconds = 0;
-        let milliseconds = 0;
+        function startCountdown() {
+            const endDate = new Date("2025-04-17T00:00:00").getTime(); 
 
-        function startTimer() {
-            timer = setInterval(function() {
-                milliseconds++;
-                if (milliseconds >= 100) {
-                    milliseconds = 0;
-                    seconds++;
-                }
-                if (seconds >= 60) {
-                    seconds = 0;
-                    minutes++;
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeLeft = endDate - now;
+
+                if (timeLeft <= 0) {
+                    document.getElementById("cronometru").textContent = "00:00:00:00";
+                    clearInterval(timer);
+                    return;
                 }
 
-                document.getElementById("cronometru").textContent = formatTime(minutes) + ":" + formatTime(seconds) + ":" + formatTime(milliseconds);
-            }, 10);
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                document.getElementById("cronometru").textContent = 
+                    formatTime(days) + ":" + formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+            }
+
+            function formatTime(time) {
+                return time < 10 ? "0" + time : time;
+            }
+
+            updateCountdown();
+            const timer = setInterval(updateCountdown, 1000);
         }
 
-        function formatTime(time) {
-            return time < 10 ? "0" + time : time;
-        }
-
-        window.onload = function() {
-            startTimer();
-        };
+        window.onload = startCountdown;
     </script>
 </body>
 </html>
