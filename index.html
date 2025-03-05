@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STRONGSTONE</title>
-    
-    <!-- Adăugăm fonturi futuriste -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
+        /* Resetare stiluri implicite */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Stiluri generale */
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #010c2b, #031f5d); /* Albastru închis pentru un vibe futurist */
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #00aaff, #87ceeb); /* Albastru tehnologic */
             color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         header {
@@ -28,7 +28,10 @@
             align-items: center;
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid #ffb400; /* Linia aurie pentru un accent de lux */
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
 
         .navbar nav ul {
@@ -42,9 +45,13 @@
 
         .navbar nav ul li a {
             text-decoration: none;
-            color: #ffb400;
+            color: #ffdf00;
             font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .navbar nav ul li a:hover {
+            color: #fff;
         }
 
         .hero-section {
@@ -55,87 +62,146 @@
             text-align: center;
             background: rgba(0, 0, 0, 0.6);
             padding: 50px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-content h1 {
-            font-size: 3.5em;
+            font-size: 3em;
             margin-bottom: 20px;
-            color: #ffb400; /* Auriu */
-            font-family: 'Orbitron', sans-serif;
+            color: #ffdf00;
+            animation: fadeIn 1s ease-out;
         }
 
         .timer {
-            font-size: 2em;
-            color: #ffb400;
-            padding: 10px;
-            border-radius: 10px;
-            border: 3px solid #ffb400;
-            box-shadow: 0 0 10px #ffb400; /* Glow efect */
-            display: inline-block;
-            margin-top: 20px;
+            font-size: 2.5em;
+            color: #ffdf00;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Efect de fade-in pentru secțiuni */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .about-section, .contact-section {
             padding: 60px 20px;
             text-align: center;
             color: #fff;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 100px;
+        }
+
+        .about-section h2, .contact-section h2 {
+            font-size: 2.5em;
+            color: #ffdf00;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out;
         }
 
         form input, form textarea {
             width: 80%;
             padding: 10px;
             margin: 10px 0;
-            font-size: 1em;
+            font-size: 1.1em;
+            border: none;
             border-radius: 5px;
-            border: 1px solid #ffb400;
+            transition: transform 0.3s ease;
+        }
+
+        form input:focus, form textarea:focus {
+            transform: scale(1.05);
+            outline: none;
         }
 
         form button {
             padding: 10px 20px;
-            background-color: #ffb400;
+            background-color: #ffdf00;
             border: none;
             font-size: 1.2em;
-            color: #010c2b;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         form button:hover {
-            background-color: #ff8c00; /* Efect de hover */
+            background-color: #e1c400;
+            transform: scale(1.05);
         }
 
         footer {
             text-align: center;
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.8);
-            color: #ffb400;
+            color: #ffdf00;
         }
 
         footer a {
             text-decoration: none;
-            color: #ffb400;
+            color: #ffdf00;
         }
 
-        /* Media Queries pentru a face site-ul mai adaptabil */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-            .timer {
-                font-size: 1.5em;
-            }
-
-            form input, form textarea {
-                width: 90%;
-            }
-
-            form button {
-                width: 90%;
-            }
+        /* Parallax Scroll */
+        .parallax {
+            background-image: url('your-image.jpg');
+            height: 500px;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
+        /* Elemente floating 3D */
+        .floating-elements {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+        }
+
+        .floating-elements::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 20%;
+            left: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -146,7 +212,7 @@
                     <li><a href="#home">HOME</a></li>
                     <li><a href="#about">Who we are</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="whitepaper.html" target="_blank">Whitepaper</a></li> <!-- Link pentru Whitepaper -->
+                    <li><a href="whitepaper.html" target="_blank">Whitepaper</a></li>
                 </ul>
             </nav>
         </div>
@@ -155,7 +221,7 @@
     <section id="home" class="hero-section">
         <div class="hero-content">
             <h1>Welcome to a new era!</h1>
-            <p>StrongStone STSN crypto</p>
+            <p>StrongStone STSN Crypto</p>
             <div class="timer">
                 <h2>Time left: <span id="cronometru">45:00:00:00</span></h2>
             </div>
