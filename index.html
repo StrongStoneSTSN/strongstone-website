@@ -64,6 +64,12 @@
             font-family: 'Orbitron', sans-serif;
         }
 
+        .price {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #ffb400;
+        }
+
         .timer {
             font-size: 2em;
             color: #ffb400;
@@ -156,9 +162,13 @@
         <div class="hero-content">
             <h1>STRONGSTONE STSN</h1>
             <p>Welcome to a new era!</p>
+            <div class="price">
+                <p>Price per token: 0.005 BNB</p> <!-- Afișează prețul per token -->
+            </div>
             <div class="timer">
                 <h2>Time left: <span id="cronometru">45:00:00:00</span></h2>
             </div>
+            <button onclick="buyTokens()">Buy 10 STSN Tokens</button>
         </div>
     </section>
 
@@ -182,9 +192,57 @@
         <p>Follow us on Twitter: <a href="https://twitter.com/strongstoneSTSN" target="_blank">@strongstoneSTSN</a></p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
     <script>
+        const contractAddress = "0x83e203eBFB2911c3B8C9D6F573959116290fFc86";
+        const tokenAddress = "0x0F73E7d69b45F85fF56C8630527995d7D4d90261";
+        const tokenPrice = 0.005; // Prețul pentru un token în BNB
+
+        const ABI = [
+            {
+                "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
+                "name": "balanceOf",
+                "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [{"internalType": "address", "name": "recipient", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}],
+                "name": "transfer",
+                "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }
+        ];
+
+        // Inițializare Web3
+        let web3 = new Web3(window.ethereum);
+        let contract = new web3.eth.Contract(ABI, contractAddress);
+
+        async function buyTokens() {
+            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+            const userAccount = accounts[0];
+
+            // Calculăm valoarea în wei
+            const amount = web3.utils.toWei((10 * tokenPrice).toString(), 'ether');
+
+            try {
+                // Trimiterea tranzacției de cumpărare
+                await web3.eth.sendTransaction({
+                    from: userAccount,
+                    to: contractAddress,
+                    value: amount
+                });
+
+                alert("Transaction successful! You've purchased 10 STSN tokens.");
+            } catch (error) {
+                console.error(error);
+                alert("Transaction failed.");
+            }
+        }
+
         function startCountdown() {
-            const endDate = new Date("2025-04-17T00:00:00").getTime(); 
+            const endDate = new Date("2025-04-17T00:00:00").getTime();
 
             function updateCountdown() {
                 const now = new Date().getTime();
