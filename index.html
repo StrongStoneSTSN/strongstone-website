@@ -123,6 +123,44 @@
             color: #ffb400;
         }
 
+        /* Modal (popup) styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); 
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            color: #000;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            float: right;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
         /* Media Queries pentru a face site-ul mai adaptabil */
         @media (max-width: 768px) {
             .hero-content h1 {
@@ -141,7 +179,6 @@
                 width: 90%;
             }
         }
-
     </style>
 </head>
 <body>
@@ -168,7 +205,7 @@
             <div class="timer">
                 <h2>Time left: <span id="cronometru">45:00:00:00</span></h2>
             </div>
-            <button onclick="buyTokens()">Buy 10 STSN Tokens</button>
+            <button id="buyBtn">Buy 10 STSN Tokens</button>
         </div>
     </section>
 
@@ -192,86 +229,83 @@
         <p>Follow us on Twitter: <a href="https://twitter.com/strongstoneSTSN" target="_blank">@strongstoneSTSN</a></p>
     </footer>
 
+    <!-- Modal pentru Buy STSN -->
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Buy STRONGSTONE STSN Tokens</h2>
+            <p>Price per token: 0.005 BNB</p>
+            <form id="buyForm">
+                <input type="number" id="amount" placeholder="Enter amount (in tokens)" required min="1" />
+                <button type="submit">Buy Tokens</button>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
     <script>
         const contractAddress = "0x83e203eBFB2911c3B8C9D6F573959116290fFc86";
         const tokenAddress = "0x0F73E7d69b45F85fF56C8630527995d7D4d90261";
         const tokenPrice = 0.005; // Prețul pentru un token în BNB
 
-        const ABI = [
-            {
-                "inputs": [{"internalType": "address", "name": "account", "type": "address"}],
-                "name": "balanceOf",
-                "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
-                "stateMutability": "view",
-                "type": "function"
-            },
-            {
-                "inputs": [{"internalType": "address", "name": "recipient", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}],
-                "name": "transfer",
-                "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            }
-        ];
-
         // Inițializare Web3
         let web3 = new Web3(window.ethereum);
-        let contract = new web3.eth.Contract(ABI, contractAddress);
 
-        async function buyTokens() {
+        // Afișează modalul
+        const modal = document.getElementById("buyModal");
+        const btn = document.getElementById("buyBtn");
+        const span = document.getElementsByClassName("close")[0];
+
+        // Când se apasă pe butonul "Buy 10 STSN Tokens"
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Când se apasă pe X (pentru a închide modalul)
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Când se face click în afara modalului, închide-l
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.getElementById("buyForm").onsubmit = async function(event) {
+            event.preventDefault();
+
+            const amount = document.getElementById("amount").value;
+            const amountInBNB = web3.utils.toWei((amount * tokenPrice).toString(), 'ether');
             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
             const userAccount = accounts[0];
-
-            // Calculăm valoarea în wei
-            const amount = web3.utils.toWei((10 * tokenPrice).toString(), 'ether');
+            
+            const contract = new web3.eth.Contract([
+                {
+                    "inputs": [{"internalType": "address", "name": "recipient", "type": "address"}, {"internalType": "uint256", "name": "amount", "type": "uint256"}],
+                    "name": "transfer",
+                    "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ], contractAddress);
 
             try {
-                // Trimiterea tranzacției de cumpărare
-                await web3.eth.sendTransaction({
+                const tx = {
                     from: userAccount,
                     to: contractAddress,
-                    value: amount
-                });
-
-                alert("Transaction successful! You've purchased 10 STSN tokens.");
+                    value: amountInBNB,
+                    gas: 2000000
+                };
+                await web3.eth.sendTransaction(tx);
+                alert("Transaction successful! You've purchased " + amount + " STSN tokens.");
+                modal.style.display = "none"; // Închide modalul după achiziție
             } catch (error) {
-                console.error(error);
+                console.error("Transaction failed", error);
                 alert("Transaction failed.");
             }
         }
-
-        function startCountdown() {
-            const endDate = new Date("2025-04-17T00:00:00").getTime();
-
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const timeLeft = endDate - now;
-
-                if (timeLeft <= 0) {
-                    document.getElementById("cronometru").textContent = "00:00:00:00";
-                    clearInterval(timer);
-                    return;
-                }
-
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                document.getElementById("cronometru").textContent = 
-                    formatTime(days) + ":" + formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
-            }
-
-            function formatTime(time) {
-                return time < 10 ? "0" + time : time;
-            }
-
-            updateCountdown();
-            const timer = setInterval(updateCountdown, 1000);
-        }
-
-        window.onload = startCountdown;
     </script>
 </body>
 </html>
