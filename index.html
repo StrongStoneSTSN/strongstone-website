@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STRONGSTONE</title>
     
-    <!-- Adăugăm fonturi futuriste -->
+    <!-- Fonturi futuriste -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -17,7 +17,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #010c2b, #031f5d); /* Albastru închis pentru un vibe futurist */
+            background: linear-gradient(135deg, #010c2b, #031f5d);
             color: #fff;
             line-height: 1.6;
         }
@@ -28,7 +28,7 @@
             align-items: center;
             padding: 20px;
             background-color: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid #ffb400; /* Linia aurie pentru un accent de lux */
+            border-bottom: 2px solid #ffb400;
         }
 
         .navbar nav ul {
@@ -60,7 +60,7 @@
         .hero-content h1 {
             font-size: 3.5em;
             margin-bottom: 20px;
-            color: #ffb400; /* Auriu */
+            color: #ffb400;
             font-family: 'Orbitron', sans-serif;
         }
 
@@ -70,7 +70,7 @@
             padding: 10px;
             border-radius: 10px;
             border: 3px solid #ffb400;
-            box-shadow: 0 0 10px #ffb400; /* Glow efect */
+            box-shadow: 0 0 10px #ffb400;
             display: inline-block;
             margin-top: 20px;
         }
@@ -102,7 +102,7 @@
         }
 
         form button:hover {
-            background-color: #ff8c00; /* Efect de hover */
+            background-color: #ff8c00;
         }
 
         footer {
@@ -117,7 +117,40 @@
             color: #ffb400;
         }
 
-        /* Media Queries pentru a face site-ul mai adaptabil */
+        .buy-section {
+            padding: 50px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 40px auto;
+            max-width: 600px;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .address {
+            background: #222;
+            padding: 10px;
+            border-radius: 5px;
+            word-break: break-word;
+            color: #ffb400;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background: gold;
+            color: black;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .copy-btn:hover {
+            background: orange;
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 {
                 font-size: 2.5em;
@@ -135,7 +168,6 @@
                 width: 90%;
             }
         }
-
     </style>
 </head>
 <body>
@@ -145,8 +177,9 @@
                 <ul>
                     <li><a href="#home">HOME</a></li>
                     <li><a href="#about">Who we are</a></li>
+                    <li><a href="#buy-stsn">Buy STSN</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="whitepaper.html" target="_blank">Whitepaper</a></li> <!-- Link pentru Whitepaper -->
+                    <li><a href="whitepaper.html" target="_blank">Whitepaper</a></li>
                 </ul>
             </nav>
         </div>
@@ -162,9 +195,19 @@
         </div>
     </section>
 
+    <section id="buy-stsn" class="buy-section">
+        <h2>Buy STSN</h2>
+        <p><strong>1 STSN = 1 BNB</strong></p>
+        <p>⚠️ <strong>ATTENTION:</strong> Only use Binance Smart Chain (BSC) network.</p>
+
+        <h3>Smart Contract Address:</h3>
+        <p class="address" id="contract">0x83e203eBFB2911c3B8C9D6F573959116290fFc86</p>
+        <button class="copy-btn" onclick="copyText('contract')">Copy Contract Address</button>
+    </section>
+
     <section id="about" class="about-section">
-        <h2>STRONGSTONE STSN is a Private Crypto Investment fund in real estate, recycling, informatics, AI, trade and production</h2>
-        <p>sswissgenove@gmail.com/cazjean2023@gmail.com</p>
+        <h2>About Us</h2>
+        <p>STRONGSTONE STSN is a Private Crypto Investment fund in real estate, recycling, informatics, AI, trade, and production.</p>
     </section>
 
     <section id="contact" class="contact-section">
@@ -183,36 +226,29 @@
     </footer>
 
     <script>
-        function startCountdown() {
-            const endDate = new Date("2025-04-17T00:00:00").getTime(); 
+        function copyText(id) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied: " + text);
+            });
+        }
 
+        function startCountdown() {
+            const endDate = new Date("2025-04-17T00:00:00").getTime();
             function updateCountdown() {
                 const now = new Date().getTime();
                 const timeLeft = endDate - now;
-
                 if (timeLeft <= 0) {
                     document.getElementById("cronometru").textContent = "00:00:00:00";
                     clearInterval(timer);
                     return;
                 }
-
                 const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                document.getElementById("cronometru").textContent = 
-                    formatTime(days) + ":" + formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds);
+                document.getElementById("cronometru").textContent = days + " days left";
             }
-
-            function formatTime(time) {
-                return time < 10 ? "0" + time : time;
-            }
-
             updateCountdown();
             const timer = setInterval(updateCountdown, 1000);
         }
-
         window.onload = startCountdown;
     </script>
 </body>
