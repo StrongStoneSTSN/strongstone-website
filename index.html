@@ -7,42 +7,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #e0e0e0;
+      --accent-color: #00f0ff;
+      --muted-color: #888;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       font-family: 'Roboto', sans-serif;
-      background-color: #0d0d0d;
-      color: #f5f5f5;
-      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      scroll-behavior: smooth;
     }
 
     header {
-      display: flex;
-      justify-content: center;
       padding: 20px 0;
-      border-bottom: 1px solid #2e2e2e;
-      background-color: #0d0d0d;
+      background-color: #0a0a0a;
+      border-bottom: 1px solid #1a1a1a;
+      text-align: center;
     }
 
     nav ul {
       list-style: none;
       display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       gap: 30px;
     }
 
     nav ul li a {
       text-decoration: none;
-      color: #e0e0e0;
+      color: var(--text-color);
       font-weight: 500;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
     nav ul li a:hover {
-      color: #00bfff;
+      color: var(--accent-color);
     }
 
     .hero-section {
@@ -52,18 +60,19 @@
       height: 90vh;
       text-align: center;
       padding: 0 20px;
+      background: radial-gradient(ellipse at center, #0a0a0a 0%, #050505 100%);
     }
 
     .hero-content h1 {
       font-size: 3em;
       font-weight: 500;
-      margin-bottom: 10px;
-      color: #ffffff;
+      margin-bottom: 20px;
+      color: #fff;
     }
 
     .hero-content p {
       font-size: 1.2em;
-      color: #bbbbbb;
+      color: var(--muted-color);
     }
 
     section {
@@ -75,61 +84,66 @@
     h2 {
       font-size: 2em;
       margin-bottom: 20px;
+      color: #fff;
     }
 
     p {
-      color: #cccccc;
+      color: var(--text-color);
+      line-height: 1.7;
     }
 
     form input, form textarea {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 5px;
+      padding: 15px;
+      margin: 12px 0;
+      background-color: #111;
+      border: 1px solid #222;
+      border-radius: 6px;
       color: #fff;
       font-size: 1em;
     }
 
     form button {
-      padding: 12px 25px;
-      background-color: #00bfff;
+      padding: 14px 28px;
+      background-color: var(--accent-color);
       color: #000;
       border: none;
       font-size: 1em;
       font-weight: 500;
       border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.3s ease;
     }
 
     form button:hover {
-      background-color: #009acd;
+      background-color: #00d2e0;
     }
 
     footer {
       text-align: center;
       padding: 40px 20px;
-      border-top: 1px solid #2e2e2e;
-      color: #888;
-      background-color: #0d0d0d;
+      border-top: 1px solid #1a1a1a;
+      color: var(--muted-color);
+      font-size: 0.9em;
     }
 
     footer a {
-      color: #00bfff;
+      color: var(--accent-color);
       text-decoration: none;
     }
 
     @media (max-width: 768px) {
       .hero-content h1 {
-        font-size: 2em;
+        font-size: 2.2em;
       }
 
       nav ul {
         flex-direction: column;
         gap: 15px;
-        align-items: center;
+      }
+
+      section {
+        padding: 60px 15px;
       }
     }
   </style>
@@ -157,7 +171,9 @@
   <section id="about">
     <h2>About Us</h2>
     <p>
-      STRONGSTONE STSN is a Private Crypto Investment fund active in real estate, recycling, informatics, AI, trade, and production. We bring transparency and technology together to create meaningful and sustainable value.
+      STRONGSTONE STSN is a Private Crypto Investment fund involved in real estate, recycling, informatics, AI, trade, and production.
+      <br /><br />
+      Our mission is to merge traditional industries with cutting-edge technology to create scalable, long-term solutions.
     </p>
   </section>
 
@@ -172,7 +188,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 Strongstone STSN - All rights reserved</p>
+    <p>&copy; 2025 Strongstone STSN – All rights reserved</p>
     <p>Follow us on <a href="https://twitter.com/strongstoneSTSN" target="_blank">Twitter</a></p>
   </footer>
 
