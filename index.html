@@ -1,255 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STRONGSTONE</title>
-    
-    <!-- Fonturi futuriste -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>STRONGSTONE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #010c2b, #031f5d);
-            color: #fff;
-            line-height: 1.6;
-        }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
 
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-bottom: 2px solid #ffb400;
-        }
+    header {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #2e2e2e;
+      background-color: #0d0d0d;
+    }
 
-        .navbar nav ul {
-            list-style: none;
-            display: flex;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
 
-        .navbar nav ul li {
-            margin-right: 20px;
-        }
+    nav ul li a {
+      text-decoration: none;
+      color: #e0e0e0;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
 
-        .navbar nav ul li a {
-            text-decoration: none;
-            color: #ffb400;
-            font-weight: bold;
-            font-family: 'Orbitron', sans-serif;
-        }
+    nav ul li a:hover {
+      color: #00bfff;
+    }
 
-        .hero-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 50px;
-        }
+    .hero-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-        .hero-content h1 {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            color: #ffb400;
-            font-family: 'Orbitron', sans-serif;
-        }
+    .hero-content h1 {
+      font-size: 3em;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
 
-        .timer {
-            font-size: 2em;
-            color: #ffb400;
-            padding: 10px;
-            border-radius: 10px;
-            border: 3px solid #ffb400;
-            box-shadow: 0 0 10px #ffb400;
-            display: inline-block;
-            margin-top: 20px;
-        }
+    .hero-content p {
+      font-size: 1.2em;
+      color: #bbbbbb;
+    }
 
-        .about-section, .contact-section {
-            padding: 60px 20px;
-            text-align: center;
-            color: #fff;
-        }
+    section {
+      padding: 80px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
 
-        form input, form textarea {
-            width: 80%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 1em;
-            border-radius: 5px;
-            border: 1px solid #ffb400;
-        }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
 
-        form button {
-            padding: 10px 20px;
-            background-color: #ffb400;
-            border: none;
-            font-size: 1.2em;
-            color: #010c2b;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
+    p {
+      color: #cccccc;
+    }
 
-        form button:hover {
-            background-color: #ff8c00;
-        }
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1em;
+    }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #ffb400;
-        }
+    form button {
+      padding: 12px 25px;
+      background-color: #00bfff;
+      color: #000;
+      border: none;
+      font-size: 1em;
+      font-weight: 500;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
 
-        footer a {
-            text-decoration: none;
-            color: #ffb400;
-        }
+    form button:hover {
+      background-color: #009acd;
+    }
 
-        .buy-section {
-            padding: 50px;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            margin: 40px auto;
-            max-width: 600px;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-        }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #2e2e2e;
+      color: #888;
+      background-color: #0d0d0d;
+    }
 
-        .address {
-            background: #222;
-            padding: 10px;
-            border-radius: 5px;
-            word-break: break-word;
-            color: #ffb400;
-            font-weight: bold;
-        }
+    footer a {
+      color: #00bfff;
+      text-decoration: none;
+    }
 
-        .copy-btn {
-            margin-top: 10px;
-            padding: 10px 15px;
-            background: gold;
-            color: black;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2em;
+      }
 
-        .copy-btn:hover {
-            background: orange;
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-
-            .timer {
-                font-size: 1.5em;
-            }
-
-            form input, form textarea {
-                width: 90%;
-            }
-
-            form button {
-                width: 90%;
-            }
-        }
-    </style>
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <nav>
-                <ul>
-                    <li><a href="#home">HOME</a></li>
-                    <li><a href="#about">Who we are</a></li>
-                    <li><a href="#buy-stsn">Buy STSN</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="whitepaper.html" target="_blank">Whitepaper</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="home" class="hero-section">
-        <div class="hero-content">
-            <h1>STRONGSTONE STSN</h1>
-            <p>WELCOME</p>
-            <div class="timer">
-                
-            </div>
-        </div>
-    </section>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Who We Are</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="whitepaper.html" target="_blank">Whitepaper</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section id="buy-stsn" class="buy-section">
-        <h2>Buy STSN</h2>
-        <p><strong>1 STSN = 1 BNB</strong></p>
-        <p>⚠️ <strong>ATTENTION:</strong> if you don't see your STSN token after the transaction, add it manually (custom token) do not enter an amount less than 0.01BNB as they will be lost Only use Binance Smart Chain (BSC) network.Send BNB to receive STSN</p>
+  <section id="home" class="hero-section">
+    <div class="hero-content">
+      <h1>STRONGSTONE STSN</h1>
+      <p>Welcome to a new era of private crypto investment</p>
+    </div>
+  </section>
 
-        <h3>Smart Contract Address:</h3>
-        <p class="address" id="contract">0x0F73E7d69b45F85fF56C8630527995d7D4d90261</p>
-        <button class="copy-btn" onclick="copyText('contract')">Copy Contract Address</button>
-    </section>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      STRONGSTONE STSN is a Private Crypto Investment fund active in real estate, recycling, informatics, AI, trade, and production. We bring transparency and technology together to create meaningful and sustainable value.
+    </p>
+  </section>
 
-    <section id="about" class="about-section">
-        <h2>About Us</h2>
-        <p>STRONGSTONE STSN is a Private Crypto Investment fund in real estate, recycling, informatics, AI, trade, and production.</p>
-    </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Name" required />
+      <input type="email" placeholder="Email" required />
+      <textarea placeholder="Message" rows="5" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
 
-    <section id="contact" class="contact-section">
-        <h2>Contact</h2>
-        <form>
-            <input type="text" placeholder="Name" required />
-            <input type="email" placeholder="Email" required />
-            <textarea placeholder="Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+  <footer>
+    <p>&copy; 2025 Strongstone STSN - All rights reserved</p>
+    <p>Follow us on <a href="https://twitter.com/strongstoneSTSN" target="_blank">Twitter</a></p>
+  </footer>
 
-    <footer>
-        <p>&copy; 2025 Strongstone STSN - All rights reserved</p>
-        <p>Follow us on Twitter: <a href="https://twitter.com/strongstoneSTSN" target="_blank">@strongstoneSTSN</a></p>
-    </footer>
-
-    <script>
-        function copyText(id) {
-            const text = document.getElementById(id).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Copied: " + text);
-            });
-        }
-
-        function startCountdown() {
-            const endDate = new Date("2025-04-17T00:00:00").getTime();
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const timeLeft = endDate - now;
-                if (timeLeft <= 0) {
-                    document.getElementById("cronometru").textContent = "00:00:00:00";
-                    clearInterval(timer);
-                    return;
-                }
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                document.getElementById("cronometru").textContent = days + " days left";
-            }
-            updateCountdown();
-            const timer = setInterval(updateCountdown, 1000);
-        }
-        window.onload = startCountdown;
-    </script>
 </body>
 </html>
